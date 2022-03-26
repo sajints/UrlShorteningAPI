@@ -1496,11 +1496,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sajin\\source\\repos\\UrlShorteningService\\UrlShorteningService\\UrlShorteningApi.csproj",
+      "projectUniqueName": "C:\\Sajin\\Code\\UrlShorteningAPI\\UrlShorteningAPI\\UrlShorteningService\\UrlShorteningApi.csproj",
       "projectName": "UrlShorteningApi",
-      "projectPath": "C:\\Users\\sajin\\source\\repos\\UrlShorteningService\\UrlShorteningService\\UrlShorteningApi.csproj",
+      "projectPath": "C:\\Sajin\\Code\\UrlShorteningAPI\\UrlShorteningAPI\\UrlShorteningService\\UrlShorteningApi.csproj",
       "packagesPath": "C:\\Users\\sajin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sajin\\source\\repos\\UrlShorteningService\\UrlShorteningService\\obj\\",
+      "outputPath": "C:\\Sajin\\Code\\UrlShorteningAPI\\UrlShorteningAPI\\UrlShorteningService\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sajin\\AppData\\Roaming\\NuGet\\NuGet.Config",
