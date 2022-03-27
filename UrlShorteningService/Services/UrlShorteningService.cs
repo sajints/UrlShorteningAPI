@@ -53,7 +53,24 @@ namespace UrlShortening.Services
                 _shortUrl = protocol + host + "/" + _token;
             }
             else
+            {
+                Uri uri = new Uri(customShortUrl);
+                var host = uri.Host;
+                int hostlength = customShortUrl.IndexOf(host, 0);
+                string hostSubString = customShortUrl.Substring(hostlength);
+                int withoutProtocol = hostSubString.IndexOf("/",0);
+                string token = hostSubString.Substring(withoutProtocol + 1);
+                if(token.Length != 5)
+                { 
+                    return new CreateViewModel
+                    {
+                        message = Messages.wrongInputMessage,
+                        status = false,
+                        shortUrl = customShortUrl
+                    };
+                }
                 _shortUrl = customShortUrl;
+            }
 
             string _message = "Added successfully!";
             bool _status = true;
