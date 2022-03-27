@@ -40,7 +40,7 @@ namespace UrlShortening.Services
             if (customShortUrl == null)
             {
                 bool isExisting = true;
-                while(!isExisting)
+                while(isExisting)
                 { 
                     _token = RandomHelper.GenerateRandomAlphanumericString();
                     isExisting = _context.GetByToken(_token);
@@ -60,14 +60,10 @@ namespace UrlShortening.Services
                 string hostSubString = customShortUrl.Substring(hostlength);
                 int withoutProtocol = hostSubString.IndexOf("/",0);
                 string token = hostSubString.Substring(withoutProtocol + 1);
-                if(token.Length != 5)
+                if(token.Length != 6)
                 { 
-                    return new CreateViewModel
-                    {
-                        message = Messages.wrongInputMessage,
-                        status = false,
-                        shortUrl = customShortUrl
-                    };
+                   return CreateViewModel(Messages.wrongInputMessage, false, customShortUrl);
+
                 }
                 _shortUrl = customShortUrl;
             }
@@ -91,12 +87,7 @@ namespace UrlShortening.Services
                 _message = ex.Message;
                 _status = false;
             }
-            var createViewModel = new CreateViewModel
-            {
-                message = _message,
-                status = _status,
-                shortUrl = _shortUrl
-            };
+            var createViewModel = CreateViewModel(_message, _status, _shortUrl);
             
             return createViewModel;
         }
@@ -105,16 +96,22 @@ namespace UrlShortening.Services
         {
             string shortUrl = _context.GetByLongUrl(longUrl);
             if ( shortUrl != "")
-            { 
-                var createViewModel = new CreateViewModel
-                {
-                    message = Messages.longUrlExistingMessage,
-                    status = false,
-                    shortUrl = shortUrl
-                };
-                return createViewModel;
+            {
+                return CreateViewModel(Messages.longUrlExistingMessage, false, shortUrl);
+                
             }
             return null;
+        }
+
+        private CreateViewModel CreateViewModel(string message, bool status, string shortUrl)
+        {
+            var createViewModel = new CreateViewModel
+            {
+                message = message,
+                status = status,
+                shortUrl = shortUrl
+            };
+            return createViewModel;
         }
     }
 }
