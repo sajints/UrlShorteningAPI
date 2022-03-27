@@ -40,7 +40,7 @@ namespace UrlShortening.Services
             if (customShortUrl == null)
             {
                 bool isExisting = true;
-                while(!isExisting)
+                while(isExisting)
                 { 
                     _token = RandomHelper.GenerateRandomAlphanumericString();
                     isExisting = _context.GetByToken(_token);
@@ -60,7 +60,7 @@ namespace UrlShortening.Services
                 string hostSubString = customShortUrl.Substring(hostlength);
                 int withoutProtocol = hostSubString.IndexOf("/",0);
                 string token = hostSubString.Substring(withoutProtocol + 1);
-                if(token.Length != 5)
+                if(token.Length != 6)
                 { 
                    return CreateViewModel(Messages.wrongInputMessage, false, customShortUrl);
 
@@ -107,8 +107,8 @@ namespace UrlShortening.Services
         {
             var createViewModel = new CreateViewModel
             {
-                message = Messages.longUrlExistingMessage,
-                status = false,
+                message = message,
+                status = status,
                 shortUrl = shortUrl
             };
             return createViewModel;
